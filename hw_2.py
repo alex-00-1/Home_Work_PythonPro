@@ -15,7 +15,7 @@ class Car:
     def move(self, distance):
 
         if isinstance(self, Car):
-            
+
             if self.fuel < distance:
                 self.trip_distance += self.fuel
                 self.fuel = 0
@@ -45,26 +45,27 @@ car_3 = Car(race_dist, "Subaru", "blue")
 cars = [car_2, car_1, car_3]
 
 
-# print(f"dist is {desired_dist}")
 while race_dist < desired_dist:
 
     for car in cars:
         race_dist = car.move(desired_dist)
 
         if race_dist >= desired_dist:
-            winner = car
+            winner = cars.index(car)
+            print(cars.index(car))
             print(f"{car} - finished first!")
             break
     
     if race_dist < desired_dist:
+        winner = 0
         print("There is no winner")
         break
 
-for i in cars:
-    if i == winner:
-        continue
+
+for i in cars[winner + 1:]:
     i.move(desired_dist)
 
+# print(f"dist is {desired_dist}")
 print()
 
 for car in cars:
